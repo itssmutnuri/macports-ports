@@ -1,0 +1,40 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           python 1.0
+
+name                py-causalml
+version             0.2.3
+checksums           rmd160  d4d833121dd76df2ba52be0d62050913b2a3e07a \
+                    sha256  70bd6b7e0dbebf2cbe0fa34a324d785770a8ca00f1606d2b453cb965a12839f0 \
+                    size    124088
+
+categories-append   devel
+platforms           darwin
+license             Apache-2
+maintainers         openmaintainer
+supported_archs     noarch
+
+description         Uplift Modeling and Causal Inference with Machine Learning Algorithms
+long_description    ${description}
+
+homepage            https://github.com/uber-common/causalml
+
+master_sites        pypi:r/${python.rootname}
+distname            ${python.rootname}-${version}
+
+python.versions     36 37
+
+if {${name} ne ${subport}} {
+    depends_lib-append  \
+        port:py${python.version}-cython \
+        port:py${python.version}-matplotlib \
+        port:py${python.version}-numpy \
+        port:py${python.version}-pandas \
+        port:py${python.version}-scipy \
+        port:py${python.version}-setuptools \
+        port:py${python.version}-seaborn \
+        port:py${python.version}-scikit-learn\
+        port:py${python.version}-statsmodels
+    livecheck.type  none
+}
